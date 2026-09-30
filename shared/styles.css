@@ -236,7 +236,7 @@ p {
 
 .btn-sand {
   background: var(--sand);
-  color: #1a130a;
+  color: var(--forest);
 }
 
 .btn-outline {
@@ -829,9 +829,9 @@ textarea.input {
 }
 
 .toast {
-  background: #1c1b19;
-  color: #f1ece5;
-  border: 1px solid #34312d;
+  background: var(--ink-footer);
+  color: var(--linen);
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 12px 16px;
   font-size: 0.9rem;
@@ -1971,12 +1971,12 @@ table.table {
 .auth-art {
   position: relative;
   overflow: hidden;
-  background: #0b0b0b;
+  background: var(--forest);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 40px;
-  color: #f1ece5;
+  color: var(--linen);
 }
 
 .auth-art::after {
@@ -1984,8 +1984,21 @@ table.table {
   position: absolute;
   inset: auto -20% -30% -20%;
   height: 70%;
-  background: radial-gradient(ellipse at center, rgba(226, 174, 108, 0.22), transparent 65%);
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--honey) 28%, transparent),
+    transparent 65%
+  );
   pointer-events: none;
+}
+
+.auth-art .text-muted {
+  color: var(--sage);
+  max-width: 40ch;
+}
+
+.auth-art .mono-muted {
+  color: var(--ink-muted);
 }
 
 .auth-art h2 {
@@ -2101,8 +2114,42 @@ table.table {
 /* ---------- landing ---------- */
 .landing {
   min-height: 100vh;
-  background: #0b0b0b;
-  color: #f1ece5;
+  background: var(--forest);
+  color: var(--linen);
+}
+
+.landing .eyebrow {
+  color: var(--honey);
+}
+
+.landing .btn-ghost {
+  color: var(--linen);
+}
+
+.landing .btn-ghost:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--linen) 10%, transparent);
+  color: var(--linen);
+}
+
+.landing .btn-outline {
+  color: var(--linen);
+  border-color: color-mix(in srgb, var(--linen) 28%, transparent);
+}
+
+.landing .btn-outline:hover:not(:disabled) {
+  border-color: var(--honey);
+  color: var(--linen);
+}
+
+.landing .mono-footnote {
+  margin-top: 20px;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+}
+
+.landing .mock-placeholder {
+  background: var(--mist);
+  border-radius: 12px;
 }
 
 .landing-nav {
@@ -2130,7 +2177,7 @@ table.table {
 }
 
 .landing-hero p.lede {
-  color: #b9b1a7;
+  color: var(--sage);
   font-size: 1.08rem;
   max-width: 46ch;
 }
@@ -2145,10 +2192,10 @@ table.table {
 }
 
 .landing-feature {
-  border: 1px solid #262421;
+  border: 1px solid color-mix(in srgb, var(--linen) 12%, transparent);
   border-radius: 16px;
   padding: 18px;
-  background: #121211;
+  background: color-mix(in srgb, var(--ink-footer) 55%, var(--forest));
 }
 
 .landing-feature strong {
@@ -2160,7 +2207,7 @@ table.table {
 
 .landing-feature p {
   font-size: 0.86rem;
-  color: #857d74;
+  color: var(--ink-muted);
 }
 
 @media (max-width: 900px) {
@@ -2178,9 +2225,23 @@ table.table {
   margin: 0 auto;
   border-radius: 34px;
   padding: 10px;
-  background: #1a1918;
-  border: 1px solid #2c2a27;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(226, 174, 108, 0.06);
+  background: var(--ink-footer);
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.45),
+    0 0 0 1px color-mix(in srgb, var(--honey) 12%, transparent);
+}
+
+.mock-surface {
+  background: var(--mist);
+}
+
+.mock-text-muted {
+  color: var(--ink-muted);
+}
+
+.mock-text-body {
+  color: var(--ink-muted);
 }
 
 .phone-mock-screen {

@@ -14,12 +14,12 @@ function AuthFrame({ children }: { children: ReactNode }) {
         <div style={{ position: "relative", zIndex: 1, display: "grid", gap: 16 }}>
           <p className="eyebrow">instant storefront</p>
           <h2>Your shop, live in seconds.</h2>
-          <p style={{ color: "#b9b1a7", maxWidth: "40ch" }}>
+          <p className="text-muted">
             Build a catalog, share one link on WhatsApp and Instagram, and take paid orders from customers who trust
             what they see.
           </p>
         </div>
-        <p className="mono" style={{ color: "#857d74", position: "relative", zIndex: 1 }}>
+        <p className="mono mono-muted" style={{ position: "relative", zIndex: 1 }}>
           one identity · every service
         </p>
       </div>

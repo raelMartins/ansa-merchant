@@ -292,7 +292,7 @@ export function OnboardingPage() {
           </p>
           <div className="phone-mock">
             <div className="phone-mock-screen theme-light" style={{ minHeight: 520 }}>
-              <div style={{ height: 130, background: "#e8e0d5" }}>
+              <div className="mock-surface" style={{ height: 130 }}>
                 {d.coverUrl ? <ItemImage src={d.coverUrl} alt="" className="cover-fill" /> : null}
               </div>
               <div style={{ padding: "0 18px 18px", marginTop: -30, display: "grid", gap: 10 }}>
@@ -301,17 +301,17 @@ export function OnboardingPage() {
                 </div>
                 <div>
                   <h3 style={{ fontSize: "1.2rem" }}>{d.name || "Your business"}</h3>
-                  <p style={{ fontSize: "0.78rem", color: "#857d74" }}>
+                  <p className="mock-text-muted" style={{ fontSize: "0.78rem" }}>
                     {[d.category, d.location].filter(Boolean).join(" · ") || "Category · Location"}
                   </p>
                 </div>
-                <p style={{ fontSize: "0.82rem", color: "#4d4741" }}>{d.description || "A short line about what you sell."}</p>
+                <p className="mock-text-body" style={{ fontSize: "0.82rem" }}>{d.description || "A short line about what you sell."}</p>
                 <div className="btn btn-wa btn-sm" style={{ width: "fit-content" }}>
                   Chat on WhatsApp
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 6 }}>
                   {[0, 1, 2, 3].map((i) => (
-                    <div key={i} style={{ aspectRatio: "4/5", borderRadius: 12, background: "#e8e0d5" }} />
+                    <div key={i} className="mock-surface" style={{ aspectRatio: "4/5", borderRadius: 12 }} />
                   ))}
                 </div>
               </div>

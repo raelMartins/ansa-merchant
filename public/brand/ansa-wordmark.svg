@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 66" fill="none" role="img" aria-label="ansa">
-  <!-- Master artwork: ansa-wordmark-source.png. Tint via CSS color on parent when inlined; standalone uses sage. -->
-  <defs>
-    <mask id="ansa-wordmark-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="300" height="66">
-      <image href="ansa-wordmark-source.png" width="300" height="66" preserveAspectRatio="xMidYMid meet" />
-    </mask>
-  </defs>
-  <rect width="300" height="66" fill="#2d4236" mask="url(#ansa-wordmark-mask)" />
-</svg>
