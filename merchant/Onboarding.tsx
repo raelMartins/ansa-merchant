@@ -159,7 +159,7 @@ export function OnboardingPage() {
               step {step + 1} of {STEPS.length} · {STEPS[step]}
             </p>
             <h1>
-              {step === 0 && "Let's set up your ansa business profile"}
+              {step === 0 && "Let's set up your business profile"}
               {step === 1 && "How do customers reach you?"}
               {step === 2 && "Make it look like you"}
               {step === 3 && "Where do you already sell?"}
@@ -249,7 +249,7 @@ export function OnboardingPage() {
               ))}
               <div className="alert alert-info row" style={{ alignItems: "flex-start" }}>
                 <ChannelIcon channel="whatsapp" />
-                <span>After setup, connect WhatsApp Business, Instagram, TikTok and X once from your dashboard. ansa uses them for every product.</span>
+                <span>After setup, connect WhatsApp Business, Instagram, TikTok and X once from your dashboard — one connection for every product.</span>
               </div>
             </div>
           ) : null}

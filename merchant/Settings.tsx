@@ -80,7 +80,7 @@ export function SettingsPage() {
       </div>
       <div className="card">
         <h3>Connected accounts</h3>
-        <p className="muted" style={{ marginBottom: 16 }}>Connect once — ansa uses these for your whole shop.</p>
+        <p className="muted" style={{ marginBottom: 16 }}>Connect once — we use these channels for your whole catalog.</p>
         <div className="channel-grid">
           {integrations.map((i) => (
             <div key={i.channel} className="channel-card">

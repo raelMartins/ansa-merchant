@@ -2,6 +2,7 @@ import { useState, type FormEvent, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api, errorMessage, post, setTokens } from "../shared/api";
 import type { Shop } from "../shared/types";
+import { BrandInline } from "../shared/BrandInline";
 import { Field, Spinner, Wordmark } from "../shared/ui";
 
 type AuthData = { tokens: { accessToken: string; refreshToken: string } };
@@ -10,7 +11,7 @@ function AuthFrame({ children }: { children: ReactNode }) {
   return (
     <div className="app-root auth">
       <div className="auth-art">
-        <Wordmark size={30} inverse />
+        <Wordmark size={30} inverse badge={false} />
         <div style={{ position: "relative", zIndex: 1, display: "grid", gap: 16 }}>
           <p className="eyebrow">instant storefront</p>
           <h2>Your storefront, live in seconds.</h2>
@@ -68,9 +69,11 @@ export function SignUpPage() {
     <AuthFrame>
       <form className="auth-card" onSubmit={onSubmit}>
         <div className="stack-sm">
-          <p className="eyebrow">create your ansa account</p>
+          <p className="eyebrow">create your account</p>
           <h1>Open your business</h1>
-          <p className="text-2">One ansa account for your business. Takes about two minutes.</p>
+          <p className="text-2 brand-copy-line">
+            One <BrandInline height={13} /> account for your business. Takes about two minutes.
+          </p>
         </div>
         {error ? <div className="alert alert-err">{error}</div> : null}
         <Field label="Email">
@@ -91,7 +94,7 @@ export function SignUpPage() {
           {busy ? <Spinner label="Creating account…" /> : "Create account"}
         </button>
         <p className="muted" style={{ fontSize: "0.88rem" }}>
-          Already selling on ansa?{" "}
+          Already selling on <BrandInline height={12} />?{" "}
           <Link to="/signin" style={{ color: "var(--sand)" }}>
             Sign in
           </Link>
@@ -133,7 +136,7 @@ export function SignInPage() {
       >
         <div className="stack-sm">
           <p className="eyebrow">welcome back</p>
-          <h1>Sign in to merchant</h1>
+          <h1>Sign in</h1>
         </div>
         {error ? <div className="alert alert-err">{error}</div> : null}
         <Field label="Email">
@@ -164,7 +167,7 @@ export function SignInPage() {
           </div>
         </div>
         <p className="muted" style={{ fontSize: "0.88rem" }}>
-          New to ansa?{" "}
+          New to <BrandInline height={12} />?{" "}
           <Link to="/signup" style={{ color: "var(--sand)" }}>
             Create an account
           </Link>

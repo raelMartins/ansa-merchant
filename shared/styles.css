@@ -166,6 +166,24 @@ p {
 }
 
 /* wordmark — SVG uses currentColor; forest mastermark on light UI */
+.brand-inline {
+  display: inline-block;
+  vertical-align: -0.12em;
+  color: var(--forest);
+}
+
+.brand-copy-line {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35em;
+}
+
+.landing .brand-inline--inverse,
+.auth-art .brand-inline {
+  color: var(--linen);
+}
+
 .wordmark {
   display: inline-flex;
   align-items: center;

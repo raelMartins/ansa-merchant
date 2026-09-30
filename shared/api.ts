@@ -73,7 +73,7 @@ export async function api<T>(path: string, init: RequestInit = {}, retry = true)
   try {
     res = await fetch(`${API_URL}${path}`, { ...init, headers });
   } catch {
-    throw new ApiError(0, "NETWORK", "Can't reach ansa right now. Check your connection and that the API is running.");
+    throw new ApiError(0, "NETWORK", "Can't reach us right now. Check your connection and that the API is running.");
   }
   const json = (await res.json().catch(() => ({}))) as Envelope<T>;
 

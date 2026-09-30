@@ -3,6 +3,7 @@ import { api } from "../shared/api"
 import { meMerchant } from "../shared/merchantPath";
 import { formatNaira, timeAgo, type ActivityEvent, type CatalogItem, type Integration, type Order } from "../shared/types";
 import { AsyncView } from "../shared/AsyncView";
+import { BrandInline } from "../shared/BrandInline";
 import { ItemImage, MockBadge, OrderStatusPill, PaymentPill, copyText, useToast } from "../shared/ui";
 import { useLoad, useMerchant } from "./context";
 import { PageHeader } from "./Layout";
@@ -73,8 +74,16 @@ function OverviewContent({
   return (
     <div className="stack" style={{ gap: 22 }}>
       <PageHeader
-        eyebrow={welcome ? "you're live on ansa" : new Date().toLocaleDateString("en-NG", { weekday: "long", day: "numeric", month: "long" })}
-        title={welcome ? `Welcome to ansa, ${shop.name}` : `Good to see you, ${shop.name}`}
+        eyebrow={welcome ? "you're live" : new Date().toLocaleDateString("en-NG", { weekday: "long", day: "numeric", month: "long" })}
+        title={
+          welcome ? (
+            <span className="brand-copy-line">
+              Welcome to <BrandInline height={22} />, {shop.name}
+            </span>
+          ) : (
+            `Good to see you, ${shop.name}`
+          )
+        }
         actions={
           <>
             <button

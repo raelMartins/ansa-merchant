@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { api, errorMessage, post } from "../shared/api";
 import { clearCart, useCart } from "../shared/cart";
 import { DELIVERY_FEE_KOBO, formatNaira, type Order, type Shop } from "../shared/types";
+import { BrandInline } from "../shared/BrandInline";
 import { ErrorState, Field, ItemImage, PageLoader, Spinner, Wordmark } from "../shared/ui";
 
 export function CartPage() {
@@ -126,7 +127,9 @@ export function CheckoutPage() {
           <>
             <div className="stack">
               <h1>Checkout</h1>
-              <p className="text-2">You're checking out with a trusted ansa link — no account needed.</p>
+              <p className="text-2 brand-copy-line">
+                You're checking out with a trusted <BrandInline height={13} /> link — no account needed.
+              </p>
               {err ? <div className="alert alert-err">{err}</div> : null}
               <Field label="Full name"><input className="input" value={name} onChange={(e) => setName(e.target.value)} required /></Field>
               <Field label="Phone"><input className="input" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required /></Field>

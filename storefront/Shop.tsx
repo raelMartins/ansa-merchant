@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { api, errorMessage } from "../shared/api";
 import { useCart } from "../shared/cart";
 import { formatNaira, isInStock, stockLabel, waLink, type CatalogItem, type Shop } from "../shared/types";
+import { BrandInline } from "../shared/BrandInline";
 import { ChannelIcon, ErrorState, ItemImage, PageLoader, Wordmark } from "../shared/ui";
 
 export function ShopPage() {
@@ -100,7 +101,7 @@ export function ShopPage() {
           <div className="trust-strip">
             <span>Secure checkout</span>
             <span>Order updates</span>
-            <span>Powered by ansa</span>
+            <span className="brand-copy-line">Powered by <BrandInline height={11} /></span>
           </div>
         </div>
 
@@ -138,7 +139,7 @@ export function ShopPage() {
 
         <footer className="sf-foot">
           <Wordmark size={14} badge={false} />
-          <span>Trusted commerce on ansa</span>
+          <span className="brand-copy-line">Trusted commerce on <BrandInline height={12} /></span>
         </footer>
       </div>
     </div>
