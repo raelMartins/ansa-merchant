@@ -60,12 +60,14 @@ export function WhatsAppPage() {
     }
   }
 
-  if (loading || !data) return <PageLoader />;
+  if (loading && !data) return <PageLoader label="Loading WhatsApp…" />;
+  if (!data) return <PageLoader label="Loading WhatsApp…" />;
   const conn = data.connection;
   const s = data.settings;
 
   return (
-    <div className="stack">
+    <div className="page-view stack" data-busy={busy || loading ? "true" : undefined} aria-busy={busy || loading}>
+      {loading && data ? <div className="route-progress" aria-hidden /> : null}
       <PageHeader eyebrow="major channel" title="WhatsApp" sub="Orders, updates, and catalog sharing for Nigerian social selling." />
       <div className="card">
         <div className="spread">

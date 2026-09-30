@@ -1,7 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { AnimatedOutlet } from "../shared/AnimatedOutlet";
 import { signOut } from "../shared/api";
 import { ItemImage, Wordmark } from "../shared/ui";
+import { useAppTheme } from "../shared/theme";
 import { MerchantProvider, useMerchant } from "./context";
 
 const NAV: { to: string; label: string; end?: boolean; section?: string }[] = [
@@ -23,17 +25,8 @@ const TABS = [
   { to: "/dashboard/settings", label: "More" },
 ];
 
-type Theme = "dark" | "light";
-
-function useTheme(): [Theme, () => void] {
-  const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem("ansa.theme") as Theme) || "dark");
-  useEffect(() => {
-    localStorage.setItem("ansa.theme", theme);
-  }, [theme]);
-  return [theme, () => setTheme((t) => (t === "dark" ? "light" : "dark"))];
-}
-
-function Sidebar({ theme, toggleTheme, onNavigate }: { theme: Theme; toggleTheme: () => void; onNavigate?: () => void }) {
+function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
+  const { theme, toggleTheme } = useAppTheme();
   const { shop } = useMerchant();
   const nav = useNavigate();
   return (
@@ -85,13 +78,12 @@ function Sidebar({ theme, toggleTheme, onNavigate }: { theme: Theme; toggleTheme
 }
 
 function Shell() {
-  const [theme, toggleTheme] = useTheme();
   const [drawer, setDrawer] = useState(false);
   const loc = useLocation();
   useEffect(() => setDrawer(false), [loc.pathname]);
 
   return (
-    <div className={`app-root theme-${theme}`}>
+    <div className="app-root">
       <div className="m-mobilebar">
         <Wordmark size={20} tag="shop" />
         <button className="icon-btn" type="button" aria-label="Menu" onClick={() => setDrawer(true)}>
@@ -100,13 +92,13 @@ function Shell() {
       </div>
       {drawer ? (
         <div className="m-drawer" onClick={() => setDrawer(false)}>
-          <Sidebar theme={theme} toggleTheme={toggleTheme} onNavigate={() => setDrawer(false)} />
+          <Sidebar onNavigate={() => setDrawer(false)} />
         </div>
       ) : null}
       <div className="m-shell">
-        <Sidebar theme={theme} toggleTheme={toggleTheme} />
+        <Sidebar />
         <main className="m-main">
-          <Outlet />
+          <AnimatedOutlet />
         </main>
       </div>
       <nav className="m-tabbar">

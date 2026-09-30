@@ -3,7 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import { api, errorMessage, patch } from "../shared/api"
 import { meMerchant } from "../shared/merchantPath";
 import { formatDateTime, formatNaira, ORDER_STATUSES, ORDER_STATUS_LABEL, type Order, type OrderStatus } from "../shared/types";
-import { ErrorState, MockBadge, OrderStatusPill, PageLoader, PaymentPill, useToast } from "../shared/ui";
+import { AsyncView } from "../shared/AsyncView";
+import { MockBadge, OrderStatusPill, PaymentPill, useToast } from "../shared/ui";
 import { useLoad } from "./context";
 import { PageHeader } from "./Layout";
 
@@ -11,14 +12,14 @@ export function OrdersPage() {
   const toast = useToast();
   const [params, setParams] = useSearchParams();
   const selectedId = params.get("order");
-  const { data, setData, error, loading, reload } = useLoad(async () => (await api<{ orders: Order[] }>(meMerchant("/orders"))).orders);
+  const { data, setData, error, loading, busy, reload } = useLoad(async () => (await api<{ orders: Order[] }>(meMerchant("/orders"))).orders);
   const orders = data ?? [];
   const selected = useMemo(() => orders.find((o) => o.id === selectedId) ?? orders[0], [orders, selectedId]);
 
   async function setStatus(orderId: string, status: OrderStatus) {
     try {
       const res = await patch<{ order: Order; notification: { detail: string; simulated: boolean } | null }>(
-        meMerchant(`/orders/${orderId}`,
+        meMerchant(`/orders/${orderId}`),
         { status },
       );
       setData((prev) => (prev ?? []).map((o) => (o.id === orderId ? res.order : o)));
@@ -29,10 +30,8 @@ export function OrdersPage() {
     }
   }
 
-  if (loading && !data) return <PageLoader />;
-  if (error) return <ErrorState message={error} onRetry={() => void reload()} />;
-
   return (
+    <AsyncView loading={loading} busy={busy} data={data} error={error} onRetry={() => void reload()} label="Loading orders…">
     <div>
       <PageHeader eyebrow={`${orders.length} orders`} title="Orders" />
       <div className="orders-layout">
@@ -113,5 +112,6 @@ export function OrdersPage() {
         ) : null}
       </div>
     </div>
+    </AsyncView>
   );
 }

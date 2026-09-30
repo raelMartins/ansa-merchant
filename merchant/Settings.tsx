@@ -45,7 +45,7 @@ export function SettingsPage() {
 
   async function connect(ch: Channel) {
     try {
-      const { integration } = await post<{ integration: Integration }>(meMerchant(`/integrations/${ch}/simulate`, {});
+      const { integration } = await post<{ integration: Integration }>(meMerchant(`/integrations/${ch}/simulate`), {});
       setIntegrations((prev) => prev.map((i) => (i.channel === ch ? integration : i)));
       toast(`${CHANNEL_LABEL[ch]} connected (prototype)`, "info");
     } catch (e) {
@@ -54,7 +54,7 @@ export function SettingsPage() {
   }
 
   async function disconnect(ch: Channel) {
-    const { integration } = await post<{ integration: Integration }>(meMerchant(`/integrations/${ch}/disconnect`);
+    const { integration } = await post<{ integration: Integration }>(meMerchant(`/integrations/${ch}/disconnect`));
     setIntegrations((prev) => prev.map((i) => (i.channel === ch ? integration : i)));
     toast("Disconnected");
   }

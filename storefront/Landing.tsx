@@ -5,7 +5,7 @@ export function LandingPage() {
   return (
     <div className="landing">
       <nav className="landing-nav">
-        <Wordmark size={24} tag="shop" />
+        <Wordmark size={24} tag="shop" inverse />
         <div className="row">
           <Link className="btn btn-ghost" to="/signin" style={{ color: "#f1ece5" }}>Sign in</Link>
           <Link className="btn btn-sand" to="/signup">Create your shop</Link>

@@ -57,14 +57,14 @@ export function MerchantProvider({ children }: { children: ReactNode }) {
 
   if (error) {
     return (
-      <div className="app-root theme-dark" style={{ padding: 40 }}>
+      <div className="app-root" style={{ padding: 40 }}>
         <ErrorState message={error} onRetry={() => void load()} />
       </div>
     );
   }
   if (!shop) {
     return (
-      <div className="app-root theme-dark">
+      <div className="app-root">
         <PageLoader label="Opening your shop…" />
       </div>
     );
@@ -94,5 +94,13 @@ export function useLoad<T>(loader: () => Promise<T>, deps: unknown[] = []) {
     void run();
   }, [run]);
 
-  return { data, setData, error, loading, reload: run };
+  return {
+    data,
+    setData,
+    error,
+    loading,
+    /** True when refetching but previous data is still shown */
+    busy: loading && data != null,
+    reload: run,
+  };
 }

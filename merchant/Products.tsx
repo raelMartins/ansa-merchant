@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { api, errorMessage, patch } from "../shared/api"
 import { meMerchant } from "../shared/merchantPath";
 import { formatNaira, type CatalogItem, type ItemStatus } from "../shared/types";
-import { EmptyState, ErrorState, ItemImage, PageLoader, Pill, copyText, useToast } from "../shared/ui";
+import { AsyncView } from "../shared/AsyncView";
+import { EmptyState, ItemImage, PageSkeleton, Pill, copyText, useToast } from "../shared/ui";
 import { useLoad, useMerchant } from "./context";
 import { PageHeader } from "./Layout";
 
@@ -17,7 +18,7 @@ export function ProductsPage() {
   const toast = useToast();
   const [filter, setFilter] = useState<Filter>("all");
   const [q, setQ] = useState("");
-  const { data, setData, error, loading, reload } = useLoad(async () => (await api<{ products: CatalogItem[] }>(meMerchant("/products"))).products);
+  const { data, setData, error, loading, busy, reload } = useLoad(async () => (await api<{ products: CatalogItem[] }>(meMerchant("/products"))).products);
 
   const items = data ?? [];
   const counts = useMemo(
@@ -41,7 +42,7 @@ export function ProductsPage() {
 
   async function setStatus(item: CatalogItem, status: ItemStatus) {
     try {
-      const { product } = await patch<{ product: CatalogItem }>(meMerchant(`/products/${item.id}`, { status });
+      const { product } = await patch<{ product: CatalogItem }>(meMerchant(`/products/${item.id}`), { status });
       setData((prev) => (prev ?? []).map((p) => (p.id === item.id ? product : p)));
       toast(status === "published" ? `"${item.title}" is live` : status === "draft" ? "Moved to drafts" : "Archived");
     } catch (err) {
@@ -50,6 +51,15 @@ export function ProductsPage() {
   }
 
   return (
+    <AsyncView
+      loading={loading}
+      busy={busy}
+      data={data}
+      error={error}
+      onRetry={() => void reload()}
+      label="Loading catalog…"
+      skeleton={<PageSkeleton rows={6} />}
+    >
     <div>
       <PageHeader
         eyebrow={`${counts.published} live on your storefront`}
@@ -86,11 +96,7 @@ export function ProductsPage() {
         <input className="input" style={{ maxWidth: 260, marginBottom: 18 }} placeholder="Search your catalog…" value={q} onChange={(e) => setQ(e.target.value)} />
       </div>
 
-      {loading && !data ? (
-        <PageLoader />
-      ) : error ? (
-        <ErrorState message={error} onRetry={() => void reload()} />
-      ) : visible.length === 0 ? (
+      {visible.length === 0 ? (
         <EmptyState
           title={items.length === 0 ? "No products yet" : "Nothing here"}
           body={items.length === 0 ? "Add your first product or service. A name and a price is enough to start — photos are optional." : "Try a different filter."}
@@ -165,5 +171,6 @@ export function ProductsPage() {
         </div>
       )}
     </div>
+    </AsyncView>
   );
 }

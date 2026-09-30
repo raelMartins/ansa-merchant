@@ -74,15 +74,16 @@ export function SharePage() {
   const [busy, setBusy] = useState(false);
   const { data, error, loading, reload } = useLoad(async () => {
     const [share, product] = await Promise.all([
-      api<ShareData>(meMerchant(`/products/${productId}/share`),
-      api<{ product: CatalogItem }>(meMerchant(`/products/${productId}`),
+      api<ShareData>(meMerchant(`/products/${productId}/share`)),
+      api<{ product: CatalogItem }>(meMerchant(`/products/${productId}`)),
     ]);
     setCaption(share.defaultCaption);
     return { share, product: product.product };
   });
 
-  if (loading || !data) return <PageLoader />;
-  if (error) return <ErrorState message={error} onRetry={() => void reload()} />;
+  if (loading && !data) return <PageLoader label="Loading share tools…" />;
+  if (error && !data) return <ErrorState message={error} onRetry={() => void reload()} />;
+  if (!data) return <PageLoader label="Loading share tools…" />;
 
   const { share, product } = data;
   const conn = share.integrations.find((i) => i.channel === channel);
@@ -90,7 +91,7 @@ export function SharePage() {
   async function publish() {
     setBusy(true);
     try {
-      const res = await post<{ publication: Publication }>(meMerchant(`/products/${productId}/share`, { channel, caption });
+      const res = await post<{ publication: Publication }>(meMerchant(`/products/${productId}/share`), { channel, caption });
       toast(res.publication.detail, "info");
       void reload();
     } catch (e) {
@@ -101,7 +102,8 @@ export function SharePage() {
   }
 
   return (
-    <div>
+    <div className="page-view" data-busy={busy || loading ? "true" : undefined}>
+      {(busy || loading) && data ? <div className="route-progress" aria-hidden /> : null}
       <PageHeader
         eyebrow="share & publish"
         title={product.title}

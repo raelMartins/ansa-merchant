@@ -126,14 +126,14 @@ export function OnboardingPage() {
 
   if (loading) {
     return (
-      <div className="app-root theme-dark">
+      <div className="app-root">
         <PageLoader />
       </div>
     );
   }
 
   return (
-    <div className="app-root theme-dark onb">
+    <div className="app-root onb">
       <div className="onb-top">
         <Wordmark size={22} tag="shop" />
         <button

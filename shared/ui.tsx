@@ -1,11 +1,21 @@
 import { createContext, useCallback, useContext, useRef, useState, type ReactNode } from "react";
 import { errorMessage, mediaUrl, uploadImage } from "./api";
+import { AnsaLogo } from "./AnsaLogo";
 import { CHANNEL_LABEL, ORDER_STATUS_LABEL, type Channel, type ConnectionStatus, type OrderStatus, type PaymentStatus } from "./types";
 
-export function Wordmark({ size = 22, tag }: { size?: number; tag?: string }) {
+export function Wordmark({
+  size = 22,
+  tag,
+  inverse = false,
+}: {
+  size?: number;
+  tag?: string;
+  /** Light logo for dark backgrounds (landing, auth art). */
+  inverse?: boolean;
+}) {
   return (
-    <span className="wordmark" style={{ fontSize: size }}>
-      <span className="wordmark-text">ansa</span>
+    <span className={`wordmark${inverse ? " wordmark--inverse" : ""}`}>
+      <AnsaLogo height={size} className="ansa-logo" />
       {tag ? <span className="wordmark-tag">{tag}</span> : null}
     </span>
   );
@@ -26,8 +36,21 @@ export function Spinner({ label }: { label?: string }) {
 
 export function PageLoader({ label = "Loading…" }: { label?: string }) {
   return (
-    <div className="page-loader">
+    <div className="page-loader page-loader--enter" role="status" aria-live="polite">
       <Spinner label={label} />
+    </div>
+  );
+}
+
+export function PageSkeleton({ rows = 3 }: { rows?: number }) {
+  return (
+    <div className="page-skeleton page-enter" aria-hidden>
+      <div className="page-skeleton-bar" />
+      <div className="page-skeleton-grid">
+        {Array.from({ length: rows }, (_, i) => (
+          <div key={i} className="page-skeleton-card" />
+        ))}
+      </div>
     </div>
   );
 }

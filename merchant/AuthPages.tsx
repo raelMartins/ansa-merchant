@@ -8,9 +8,9 @@ type AuthData = { tokens: { accessToken: string; refreshToken: string } };
 
 function AuthFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="app-root theme-dark auth">
+    <div className="app-root auth">
       <div className="auth-art">
-        <Wordmark size={30} tag="shop" />
+        <Wordmark size={30} tag="shop" inverse />
         <div style={{ position: "relative", zIndex: 1, display: "grid", gap: 16 }}>
           <p className="eyebrow">instant storefront</p>
           <h2>Your shop, live in seconds.</h2>

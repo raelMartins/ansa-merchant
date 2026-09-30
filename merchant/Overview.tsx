@@ -2,7 +2,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../shared/api"
 import { meMerchant } from "../shared/merchantPath";
 import { formatNaira, timeAgo, type ActivityEvent, type CatalogItem, type Integration, type Order } from "../shared/types";
-import { ErrorState, ItemImage, MockBadge, OrderStatusPill, PageLoader, PaymentPill, copyText, useToast } from "../shared/ui";
+import { AsyncView } from "../shared/AsyncView";
+import { ItemImage, MockBadge, OrderStatusPill, PaymentPill, copyText, useToast } from "../shared/ui";
 import { useLoad, useMerchant } from "./context";
 import { PageHeader } from "./Layout";
 
@@ -21,7 +22,7 @@ export function OverviewPage() {
   const toast = useToast();
   const [params] = useSearchParams();
   const welcome = params.get("welcome") === "1";
-  const { data, error, loading, reload } = useLoad(async () => {
+  const { data, error, loading, busy, reload } = useLoad(async () => {
     const [overview, activity, products, integrations] = await Promise.all([
       api<OverviewData>(meMerchant("/overview")),
       api<{ events: ActivityEvent[] }>(meMerchant("/activity")),
@@ -33,9 +34,31 @@ export function OverviewPage() {
 
   const storeUrl = `${window.location.origin}/shop/${shop.slug}`;
 
-  if (loading && !data) return <PageLoader />;
-  if (error || !data) return <ErrorState message={error ?? "No data"} onRetry={() => void reload()} />;
+  return (
+    <AsyncView loading={loading} busy={busy} data={data} error={error} onRetry={() => void reload()} label="Loading overview…">
+      {data ? <OverviewContent data={data} shop={shop} welcome={welcome} storeUrl={storeUrl} toast={toast} /> : null}
+    </AsyncView>
+  );
+}
 
+function OverviewContent({
+  data,
+  shop,
+  welcome,
+  storeUrl,
+  toast,
+}: {
+  data: {
+    overview: OverviewData;
+    events: ActivityEvent[];
+    products: CatalogItem[];
+    integrations: Integration[];
+  };
+  shop: ReturnType<typeof useMerchant>["shop"];
+  welcome: boolean;
+  storeUrl: string;
+  toast: ReturnType<typeof useToast>;
+}) {
   const { overview, events, products, integrations } = data;
   const lowStock = products.filter((p) => p.kind === "product" && p.status !== "archived" && p.qtyAvailable <= 3);
   const connected = integrations.filter((i) => i.status === "connected").length;

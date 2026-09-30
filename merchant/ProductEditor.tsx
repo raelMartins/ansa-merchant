@@ -31,7 +31,7 @@ export function ProductEditorPage() {
 
   useEffect(() => {
     if (!productId) return;
-    api<{ product: CatalogItem }>(meMerchant(`/products/${productId}`)
+    api<{ product: CatalogItem }>(meMerchant(`/products/${productId}`))
       .then(({ product }) => {
         setKind(product.kind);
         setTitle(product.title);
@@ -94,7 +94,7 @@ export function ProductEditorPage() {
         toast(publish ? "Published" : "Draft saved");
         nav(publish ? `/dashboard/products/${product.id}/share` : "/dashboard/products");
       } else {
-        await patch(meMerchant(`/products/${productId}`, { ...body(publish), status: publish ? "published" : status });
+        await patch(meMerchant(`/products/${productId}`), { ...body(publish), status: publish ? "published" : status });
         toast(publish ? "Published" : "Saved");
         nav("/dashboard/products");
       }

@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
+import { ThemeProvider } from "../shared/theme";
 import { ToastProvider } from "../shared/ui";
 import "../shared/styles.css";
 
@@ -11,9 +12,11 @@ if (!root) throw new Error("root missing");
 createRoot(root).render(
   <StrictMode>
     <BrowserRouter>
-      <ToastProvider>
-        <App />
-      </ToastProvider>
+      <ThemeProvider>
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
 );
