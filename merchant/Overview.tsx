@@ -73,7 +73,7 @@ function OverviewContent({
   return (
     <div className="stack" style={{ gap: 22 }}>
       <PageHeader
-        eyebrow={welcome ? "your shop is live" : new Date().toLocaleDateString("en-NG", { weekday: "long", day: "numeric", month: "long" })}
+        eyebrow={welcome ? "you're live on ansa" : new Date().toLocaleDateString("en-NG", { weekday: "long", day: "numeric", month: "long" })}
         title={welcome ? `Welcome to ansa, ${shop.name}` : `Good to see you, ${shop.name}`}
         actions={
           <>
@@ -82,7 +82,7 @@ function OverviewContent({
               type="button"
               onClick={async () => toast((await copyText(storeUrl)) ? "Storefront link copied" : "Couldn't copy", "ok")}
             >
-              Copy shop link
+              Copy storefront link
             </button>
             <Link className="btn btn-sand" to="/dashboard/products/new">
               + Add item

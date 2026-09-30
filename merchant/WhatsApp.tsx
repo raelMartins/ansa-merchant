@@ -73,7 +73,7 @@ export function WhatsAppPage() {
         <div className="spread">
           <div>
             <h3>WhatsApp Business</h3>
-            <p className="muted">Account-level connection — used for every product in your shop.</p>
+            <p className="muted">Account-level connection — used for every product in your catalog.</p>
           </div>
           {conn ? <ConnectionPill status={conn.status as "connected" | "not_connected"} /> : null}
         </div>

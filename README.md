@@ -1,6 +1,6 @@
-# ansa shop web
+# ansa merchant web
 
-Merchant dashboard + public storefront for the ansa shop prototype.
+Merchant dashboard + public storefront for the ansa merchant prototype.
 
 - API: `http://localhost:5000` (`VITE_API_URL`)
 - App: `http://localhost:3000`

@@ -5,18 +5,22 @@ import { CHANNEL_LABEL, ORDER_STATUS_LABEL, type Channel, type ConnectionStatus,
 
 export function Wordmark({
   size = 22,
-  tag,
+  badge = "merchant",
   inverse = false,
 }: {
   size?: number;
-  tag?: string;
+  /** Product pill; `false` hides the badge (e.g. buyer storefront). */
+  badge?: string | false;
   /** Light logo for dark backgrounds (landing, auth art). */
   inverse?: boolean;
 }) {
+  const showBadge = badge !== false;
+  const label = showBadge ? badge || "merchant" : "";
+
   return (
     <span className={`wordmark${inverse ? " wordmark--inverse" : ""}`}>
       <AnsaLogo height={size} className="ansa-logo" />
-      {tag ? <span className="wordmark-tag">{tag}</span> : null}
+      {showBadge ? <span className="wordmark-badge">{label}</span> : null}
     </span>
   );
 }

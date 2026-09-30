@@ -54,7 +54,7 @@ function Preview({ channel, item, shopName, caption }: { channel: Channel; item:
     <div className="social-preview sp-x">
       <span className="avatar"><ItemImage src={img} alt="" /></span>
       <div>
-        <strong>{shopName}</strong> <span className="muted">@shop</span>
+        <strong>{shopName}</strong> <span className="muted">@merchant</span>
         <div className="sp-x-text">{caption}</div>
         <div className="sp-x-card">
           <ItemImage src={img} alt="" />

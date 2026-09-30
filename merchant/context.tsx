@@ -65,7 +65,7 @@ export function MerchantProvider({ children }: { children: ReactNode }) {
   if (!shop) {
     return (
       <div className="app-root">
-        <PageLoader label="Opening your shop…" />
+        <PageLoader label="Loading merchant…" />
       </div>
     );
   }

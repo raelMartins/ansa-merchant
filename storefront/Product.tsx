@@ -46,7 +46,7 @@ export function ProductPage() {
     <div className="app-root theme-light sf">
       <header className="sf-bar scrolled">
         <Link to={`/shop/${shop.slug}`} className="sf-bar-shop">← {shop.name}</Link>
-        <Wordmark size={16} tag="shop" />
+        <Wordmark size={16} badge={false} />
       </header>
       <div className="sf-wrap pd">
         <div className="pd-gallery">

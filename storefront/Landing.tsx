@@ -5,19 +5,19 @@ export function LandingPage() {
   return (
     <div className="landing">
       <nav className="landing-nav">
-        <Wordmark size={24} tag="shop" inverse />
+        <Wordmark size={24} inverse />
         <div className="row">
           <Link className="btn btn-ghost" to="/signin">Sign in</Link>
-          <Link className="btn btn-sand" to="/signup">Create your shop</Link>
+          <Link className="btn btn-sand" to="/signup">Get started</Link>
         </div>
       </nav>
       <section className="landing-hero">
         <div>
           <p className="eyebrow">01 // instant activation</p>
-          <h1>Your shop, live in seconds.</h1>
+          <h1>Your storefront, live in seconds.</h1>
           <p className="lede">Build a mobile catalog, share one link on WhatsApp, and take paid orders — powered by ansa.</p>
           <div className="row" style={{ marginTop: 24 }}>
-            <Link className="btn btn-sand btn-lg" to="/signup">Create your shop</Link>
+            <Link className="btn btn-sand btn-lg" to="/signup">Get started</Link>
             <Link className="btn btn-outline" to="/shop/zola-atelier">
               View live demo
             </Link>

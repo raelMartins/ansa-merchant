@@ -20,7 +20,7 @@ export function CartPage() {
   const delivery = DELIVERY_FEE_KOBO;
   return (
     <div className="app-root theme-light sf">
-      <header className="sf-bar scrolled"><Wordmark size={16} tag="shop" /></header>
+      <header className="sf-bar scrolled"><Wordmark size={16} badge={false} /></header>
       <div className="sf-wrap co" style={{ paddingTop: 24 }}>
         <div>
           <h1>Cart</h1>
@@ -120,7 +120,7 @@ export function CheckoutPage() {
 
   return (
     <div className="app-root theme-light sf">
-      <header className="sf-bar scrolled"><Wordmark size={16} tag="shop" /></header>
+      <header className="sf-bar scrolled"><Wordmark size={16} badge={false} /></header>
       <div className="sf-wrap co" style={{ paddingTop: 24 }}>
         {!payStep ? (
           <>

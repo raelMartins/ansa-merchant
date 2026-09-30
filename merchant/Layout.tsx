@@ -7,7 +7,7 @@ import { useAppTheme } from "../shared/theme";
 import { MerchantProvider, useMerchant } from "./context";
 
 const NAV: { to: string; label: string; end?: boolean; section?: string }[] = [
-  { to: "/dashboard", label: "Overview", end: true, section: "Shop" },
+  { to: "/dashboard", label: "Overview", end: true, section: "Merchant" },
   { to: "/dashboard/products", label: "Products" },
   { to: "/dashboard/orders", label: "Orders" },
   { to: "/dashboard/customers", label: "Customers" },
@@ -32,7 +32,7 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <aside className="m-side" onClick={(e) => e.stopPropagation()}>
       <div className="m-side-brand">
-        <Wordmark size={24} tag="shop" />
+        <Wordmark size={24} />
       </div>
       <nav className="m-nav">
         {NAV.map((n) => (
@@ -85,7 +85,7 @@ function Shell() {
   return (
     <div className="app-root">
       <div className="m-mobilebar">
-        <Wordmark size={20} tag="shop" />
+        <Wordmark size={20} />
         <button className="icon-btn" type="button" aria-label="Menu" onClick={() => setDrawer(true)}>
           ≡
         </button>

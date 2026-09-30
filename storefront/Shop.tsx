@@ -60,7 +60,7 @@ export function ShopPage() {
           <span>{shop.name}</span>
         </Link>
         <div className="row">
-          <Wordmark size={16} tag="shop" />
+          <Wordmark size={16} badge={false} />
           <Link to={`/shop/${shop.slug}/cart`} className="cart-btn">
             Cart
             {cart.count > 0 ? <span className="cart-count">{cart.count}</span> : null}
@@ -137,7 +137,7 @@ export function ShopPage() {
         </div>
 
         <footer className="sf-foot">
-          <Wordmark size={14} tag="shop" />
+          <Wordmark size={14} badge={false} />
           <span>Trusted commerce on ansa</span>
         </footer>
       </div>

@@ -10,10 +10,10 @@ function AuthFrame({ children }: { children: ReactNode }) {
   return (
     <div className="app-root auth">
       <div className="auth-art">
-        <Wordmark size={30} tag="shop" inverse />
+        <Wordmark size={30} inverse />
         <div style={{ position: "relative", zIndex: 1, display: "grid", gap: 16 }}>
           <p className="eyebrow">instant storefront</p>
-          <h2>Your shop, live in seconds.</h2>
+          <h2>Your storefront, live in seconds.</h2>
           <p className="text-muted">
             Build a catalog, share one link on WhatsApp and Instagram, and take paid orders from customers who trust
             what they see.
@@ -69,7 +69,7 @@ export function SignUpPage() {
       <form className="auth-card" onSubmit={onSubmit}>
         <div className="stack-sm">
           <p className="eyebrow">create your ansa account</p>
-          <h1>Open your shop</h1>
+          <h1>Open your business</h1>
           <p className="text-2">One ansa account for your business. Takes about two minutes.</p>
         </div>
         {error ? <div className="alert alert-err">{error}</div> : null}
@@ -133,7 +133,7 @@ export function SignInPage() {
       >
         <div className="stack-sm">
           <p className="eyebrow">welcome back</p>
-          <h1>Sign in to your shop</h1>
+          <h1>Sign in to merchant</h1>
         </div>
         {error ? <div className="alert alert-err">{error}</div> : null}
         <Field label="Email">

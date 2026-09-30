@@ -135,7 +135,7 @@ export function OnboardingPage() {
   return (
     <div className="app-root onb">
       <div className="onb-top">
-        <Wordmark size={22} tag="shop" />
+        <Wordmark size={22} />
         <button
           className="btn btn-ghost btn-sm"
           type="button"
@@ -166,7 +166,7 @@ export function OnboardingPage() {
             </h1>
             <p className="text-2">
               {step === 0 && "This is what customers see on your storefront and every product link."}
-              {step === 1 && "Your WhatsApp number powers order updates and the chat button on your shop."}
+              {step === 1 && "Your WhatsApp number powers order updates and the chat button on your storefront."}
               {step === 2 && "A logo and cover photo make your link feel trustworthy. You can skip this and add them later."}
               {step === 3 && "Add your handles so customers can find you. You'll connect accounts for publishing from the dashboard."}
             </p>
@@ -279,7 +279,7 @@ export function OnboardingPage() {
                 </button>
               ) : (
                 <button className="btn btn-sand" type="button" disabled={busy} onClick={() => void finish()}>
-                  {busy ? <Spinner label="Opening your shop…" /> : "Open my shop"}
+                  {busy ? <Spinner label="Finishing setup…" /> : "Open merchant dashboard"}
                 </button>
               )}
             </div>
@@ -297,7 +297,7 @@ export function OnboardingPage() {
               </div>
               <div style={{ padding: "0 18px 18px", marginTop: -30, display: "grid", gap: 10 }}>
                 <div className="sf-logo" style={{ width: 64, height: 64, borderRadius: 18 }}>
-                  <ItemImage src={d.logoUrl} alt={d.name || "Your shop"} />
+                  <ItemImage src={d.logoUrl} alt={d.name || "Your business"} />
                 </div>
                 <div>
                   <h3 style={{ fontSize: "1.2rem" }}>{d.name || "Your business"}</h3>
