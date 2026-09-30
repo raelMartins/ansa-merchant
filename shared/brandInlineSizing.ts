@@ -1,4 +1,4 @@
-/** Wordmark cap height to match adjacent `fontSize` (Plus Jakarta x-height). */
+/** Lowercase wordmark height — match x-height of companion text at `fontSize`. */
 export function wordmarkHeightForFontSize(fontSize: number): number {
-  return fontSize;
+  return Math.round(fontSize * 0.56);
 }
