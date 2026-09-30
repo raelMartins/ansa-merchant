@@ -101,7 +101,7 @@ export function ShopPage() {
           <div className="trust-strip">
             <span>Secure checkout</span>
             <span>Order updates</span>
-            <span className="brand-copy-line">Powered by <BrandInline height={11} /></span>
+            <span className="brand-copy-line">Powered by <BrandInline fontSize={12} /></span>
           </div>
         </div>
 
@@ -139,7 +139,7 @@ export function ShopPage() {
 
         <footer className="sf-foot">
           <Wordmark size={14} badge={false} />
-          <span className="brand-copy-line">Trusted commerce on <BrandInline height={12} /></span>
+          <span className="brand-copy-line">Trusted commerce on <BrandInline fontSize={12} /></span>
         </footer>
       </div>
     </div>

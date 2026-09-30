@@ -72,7 +72,7 @@ export function SignUpPage() {
           <p className="eyebrow">create your account</p>
           <h1>Open your business</h1>
           <p className="text-2 brand-copy-line">
-            One <BrandInline height={13} /> account for your business. Takes about two minutes.
+            One <BrandInline fontSize={15} /> account for your business. Takes about two minutes.
           </p>
         </div>
         {error ? <div className="alert alert-err">{error}</div> : null}
@@ -94,7 +94,7 @@ export function SignUpPage() {
           {busy ? <Spinner label="Creating account…" /> : "Create account"}
         </button>
         <p className="muted" style={{ fontSize: "0.88rem" }}>
-          Already selling on <BrandInline height={12} />?{" "}
+          Already selling on <BrandInline fontSize={14} />?{" "}
           <Link to="/signin" style={{ color: "var(--sand)" }}>
             Sign in
           </Link>
@@ -167,7 +167,7 @@ export function SignInPage() {
           </div>
         </div>
         <p className="muted" style={{ fontSize: "0.88rem" }}>
-          New to <BrandInline height={12} />?{" "}
+          New to <BrandInline fontSize={14} />?{" "}
           <Link to="/signup" style={{ color: "var(--sand)" }}>
             Create an account
           </Link>

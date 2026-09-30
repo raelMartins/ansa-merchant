@@ -128,7 +128,7 @@ export function CheckoutPage() {
             <div className="stack">
               <h1>Checkout</h1>
               <p className="text-2 brand-copy-line">
-                You're checking out with a trusted <BrandInline height={13} /> link — no account needed.
+                You're checking out with a trusted <BrandInline fontSize={15} /> link — no account needed.
               </p>
               {err ? <div className="alert alert-err">{err}</div> : null}
               <Field label="Full name"><input className="input" value={name} onChange={(e) => setName(e.target.value)} required /></Field>

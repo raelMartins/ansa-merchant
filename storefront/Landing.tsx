@@ -17,7 +17,7 @@ export function LandingPage() {
           <p className="eyebrow">01 // instant activation</p>
           <h1>Your storefront, live in seconds.</h1>
           <p className="lede brand-copy-line">
-            Build a mobile catalog, share one link on WhatsApp, and take paid orders — powered by <BrandInline height={15} className="brand-inline--inverse" />.
+            Build a mobile catalog, share one link on WhatsApp, and take paid orders — powered by <BrandInline fontSize={17} className="brand-inline--inverse" />.
           </p>
           <div className="row" style={{ marginTop: 24 }}>
             <Link className="btn btn-sand btn-lg" to="/signup">Get started</Link>

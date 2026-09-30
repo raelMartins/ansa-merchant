@@ -78,7 +78,7 @@ function OverviewContent({
         title={
           welcome ? (
             <span className="brand-copy-line">
-              Welcome to <BrandInline height={22} />, {shop.name}
+              Welcome to <BrandInline fontSize={30} />, {shop.name}
             </span>
           ) : (
             `Good to see you, ${shop.name}`
